@@ -1,0 +1,76 @@
+ <!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#STOPPORN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: white; /* White background */
+            font-family: 'Poppins', sans-serif;
+            color: black; /* Black text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+
+        .watermark {
+            font-size: 12rem; /* Adjust font size as needed */
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Monospace font */
+            color: rgba(255, 0, 0, 0.5); /* Stylish text color with higher opacity */
+            opacity: 0.5; /* Adjust opacity for visibility */
+            margin-bottom: 30px; /* Spacing below the watermark */
+        }
+
+
+        .quote {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            text-align: center;
+            font-style: italic; /* Italic text */
+            padding: 10px;
+        }
+
+
+        @media (max-width: 768px) {
+            .watermark {
+                font-size: 8rem; /* Adjust font size for smaller screens */
+            }
+
+
+            .quote {
+                font-size: 1rem;
+                padding: 9px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="watermark">NO PORN</div>
+    <div class="quote" id="quote">Loading...</div>
+    <script>
+        function fetchAndDisplayQuote() {
+            fetch("https://api.quotable.io/quotes/random?tags=motivational")
+                .then(response => response.json())
+                .then(data => {
+                    const quoteElement = document.getElementById("quote");
+                    quoteElement.innerHTML = data[0].content; // Access "content" directly
+                })
+                .catch(error => {
+                    console.error("Error fetching quote:", error);
+                });
+        }
+
+
+        fetchAndDisplayQuote(); // Fetch and display a quote on page load
+    </script>
+</body>
+</html>
